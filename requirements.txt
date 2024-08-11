@@ -11,4 +11,5 @@ seaborn
 requests
 ipykernel 
 scikit-learn
+plotly
 -e .

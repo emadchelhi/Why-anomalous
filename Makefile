@@ -29,14 +29,14 @@ clean:
 ## Lint using flake8 and black (use `make format` to do formatting)
 .PHONY: lint
 lint:
-	flake8 anomalous_customers
-	isort --check --diff --profile black anomalous_customers
-	black --check --config pyproject.toml anomalous_customers
+	flake8 anomaly_detection
+	isort --check --diff --profile black anomaly_detection
+	black --check --config pyproject.toml anomaly_detection
 
 ## Format source code with black
 .PHONY: format
 format:
-	black --config pyproject.toml anomalous_customers
+	black --config pyproject.toml anomaly_detection
 
 
 
