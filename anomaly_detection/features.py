@@ -47,7 +47,7 @@ def compute_anomaly_scores(train_data, test_data, gamma):
 
     This function fits a nearest neighbors model on the training data and then
     calculates distances to nearest neighbors for the test data. It uses a soft
-    minimum function to compute anomaly scores, which provide an indication of 
+    minimum function to compute anomaly scores, which provide an indication of
     how anomalous each test data point is.
 
     Parameters:
@@ -61,7 +61,7 @@ def compute_anomaly_scores(train_data, test_data, gamma):
     np.ndarray: An array of anomaly scores for the test data.
     """
     # Fit nearest neighbors model on the training data
-    nbrs = NearestNeighbors(n_neighbors=len(train_data), algorithm='ball_tree').fit(train_data)
+    nbrs = NearestNeighbors(n_neighbors=len(train_data), algorithm="ball_tree").fit(train_data)
 
     # Calculate distances to nearest neighbors on the test data
     distances, _ = nbrs.kneighbors(test_data)
