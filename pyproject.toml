@@ -3,9 +3,9 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "anomalous_customers"
+name = "anomaly_detection"
 version = "0.0.1"
-description = "Outlier detection analysisysis of consumers with explanations."
+description = "Outlier detection analysis of consumers with explanations."
 authors = [
   { name = "emadchelhi" },
 ]
