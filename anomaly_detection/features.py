@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn.neighbors import NearestNeighbors
 
 
 def logarithm(x, t):
@@ -17,6 +18,62 @@ def logarithm(x, t):
         Union[float, np.ndarray, pd.Series]: The natural logarithm of the sum of x and t.
     """
     return np.log(x + t)
+
+
+def soft_min(scores, gamma):
+    """
+    Computes the soft minimum of a list of scores.
+
+    The soft minimum is a differentiable approximation of the minimum function,
+    controlled by the parameter gamma. Higher values of gamma make the approximation
+    closer to the actual minimum.
+
+    Parameters:
+    scores (array-like): A list or array of numerical scores.
+    gamma (float): A positive parameter that controls the sharpness of the approximation.
+                   Higher values result in a closer approximation to the minimum.
+
+    Returns:
+    float: The soft minimum of the scores.
+    """
+    softmin = (-1 / gamma) * (np.log((1 / (len(scores) - 1)) * np.sum(np.exp(-gamma * scores))))
+    return softmin
+
+
+def compute_anomaly_scores(train_data, test_data, gamma):
+    """
+    Computes anomaly scores for the test data based on the training data using
+    a soft minimum approach.
+
+    This function fits a nearest neighbors model on the training data and then
+    calculates distances to nearest neighbors for the test data. It uses a soft
+    minimum function to compute anomaly scores, which provide an indication of 
+    how anomalous each test data point is.
+
+    Parameters:
+    train_data (array-like): The training data used to fit the nearest neighbors model.
+    test_data (array-like): The test data for which anomaly scores are to be computed.
+    gamma (float): A positive parameter for the soft minimum function, controlling the
+                   sharpness of the approximation. Higher values make the approximation
+                   closer to the actual minimum.
+
+    Returns:
+    np.ndarray: An array of anomaly scores for the test data.
+    """
+    # Fit nearest neighbors model on the training data
+    nbrs = NearestNeighbors(n_neighbors=len(train_data), algorithm='ball_tree').fit(train_data)
+
+    # Calculate distances to nearest neighbors on the test data
+    distances, _ = nbrs.kneighbors(test_data)
+
+    # Calculate softmin-based anomaly scores
+    anomaly_scores = []
+    for i in range(len(distances)):
+        scores = distances[i][:-1]
+        anomaly_score = soft_min(scores, gamma)
+        anomaly_scores.append(anomaly_score)
+
+    return np.array(anomaly_scores)
 
 
 def compute_anomaly_contributions(data, gamma, anomaly_scores):

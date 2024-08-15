@@ -12,4 +12,6 @@ requests
 ipykernel 
 scikit-learn
 plotly
+joblib
+streamlit
 -e .
