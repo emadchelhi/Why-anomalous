@@ -6,12 +6,12 @@ pip
 python-dotenv
 numpy
 pandas
-matplotlib
+matplotlib==3.8.4
 seaborn
 requests
 ipykernel 
-scikit-learn
-plotly
+scikit-learn==1.5.1
+plotly==5.23.0
 joblib
 streamlit
 -e .
