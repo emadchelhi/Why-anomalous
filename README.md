@@ -88,7 +88,7 @@ By integrating this outlier detection analysis into your business operations, yo
 --------
 ## Deployment
 
-To use this model, visit our Streamlit app:
+To use this model, visit the Streamlit app:
 
 ```bash
 https://why-anomalous.streamlit.app/
