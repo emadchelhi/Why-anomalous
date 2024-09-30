@@ -88,7 +88,7 @@ Reproducibility: The entire analysis is designed to be reproducible, ensuring co
 --------
 ## Deployment
 
-To use this model, visit our Streamlit app:
+To use this model, visit the Streamlit app:
 
 ```bash
 https://why-anomalous.streamlit.app/
